@@ -1,6 +1,9 @@
 package q2
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 //Você é um desenvolvedor de software em uma empresa financeira e está trabalhando em um sistema de folha de pagamento.
 //Cada funcionário possui um ID único, nome, cargo, salário base e um conjunto de bônus mensais. Você decidiu usar uma
@@ -20,6 +23,19 @@ type Employee struct {
 }
 
 func CalculateTotalSalary(employee *Employee) (float64, error) {
-	// Seu código aqui
-	return 0, errors.New("Not implemented yet")
+	if employee != nil {
+		var sumBonus float64 = 0
+		for _, bonus := range employee.Bonuses {
+			sumBonus += bonus
+		}
+		if sumBonus > 1500 {
+			employee.Title = "Software Senior"
+		}
+		sumTotal := sumBonus + employee.BaseSalary
+		return sumTotal, nil
+	} else {
+		fmt.Println("error")
+		return 0, errors.New("error")
+	}
+
 }
