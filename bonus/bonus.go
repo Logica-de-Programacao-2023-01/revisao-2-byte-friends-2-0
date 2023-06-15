@@ -2,19 +2,21 @@ package bonus
 
 import (
 	"errors"
-	"strconv"
+	"fmt"
 )
 
-// Você recebe uma lista de caminhos, onde `caminhos[i] = [cidadeAi, cidadeBi]` significa que existe um caminho direto que
-//vai de cidadeAi para cidadeBi. Retorne a cidade de destino, ou seja, a cidade sem nenhum caminho que saia dela.
+func Destino(paths [][2]string) (string, error) {
+	cityOutgoing := make(map[string]bool)
 
-func Destino(caminhos [][2]string) (string, error) {
-	for linha := range caminhos {
-		for _, elemento := range caminhos[linha] {
-			strconv.Atoi(elemento)
-		}
-		sort
+	for _, path := range paths {
+		fmt.Println(cityOutgoing)
+		cityOutgoing[path[0]] = true
 	}
 
-	return "", errors.New("not implemented yet")
+	for _, path := range paths {
+		if !cityOutgoing[path[1]] {
+			return path[1], nil
+		}
+	}
+	return "", errors.New("Not implemented yet")
 }
